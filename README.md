@@ -1,4 +1,3 @@
-Python as a way of LIFE!
 Homebrewed Homework: Part 1
 
 
@@ -14,8 +13,12 @@ Security Module display the unencrypted version.
 Implementation
 ========================
 1. Create file ptext.txt with 16 bytes of information.
-2. Move the file to another directory.
-3. Establish SSL connection to HSM.
-4. Upload ptext.txt for encryption
-5. Create a symmetrical key.
-6. Demonstrate that ptext.txt is encrypted and also show decrypted version.
+      - This will be input from the user
+2. Establish SSL connection to HSM.
+3. Upload ptext.txt for encryption
+4. Create a symmetrical key.
+5. Demonstrate that ptext.txt is encrypted and also show decrypted version.
+      - concatenate ptext.txt
+      - concatenate ctext.txt [the encrypted version]
+      - give the user a chance to guess the key
+      - show the encryption key that was used
