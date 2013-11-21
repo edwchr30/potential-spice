@@ -1,8 +1,9 @@
 Homebrewed Homework: Part 1
+===========================
 
 
 Encryption Key Retrieval
-========================
+---------------------------
 
 This program will highlight the versatility of python by using many methods
 to accomplish a useful task.  I plan to accept a 16-byte string that is
@@ -11,7 +12,7 @@ then through the use of a key that has been retrieved from a Hardware
 Security Module display the unencrypted version.
 
 Implementation
-========================
+--------------------------
 1. Create file ptext.txt with 16 bytes of information.
       - This will be input from the user
 2. Establish SSL connection to HSM.
