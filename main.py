@@ -10,15 +10,10 @@ print "The steps will be explained as"
 print "we go."
 print "\n"
 print "First we will create a file."
-plain_text = raw_input('Please enter 16 characters to be encrypted: ')
-while len(plain_text) != '16':
-    if len(plain_text) > '16':
-        print "Too big!"
-        plain_text = raw_input('Please enter 16 characters top be encrypted: ')
-    if len(plain_text) < '16':
-        print "Too small!"
-        plain_text = raw_input('Please enter 16 characters top be encrypted: ')
-    else:
-        print "Just right!"
-
-##Only printing "Too Small!"
+plain_text = "stuff"
+while len(plain_text)!=16:
+    plain_text = raw_input('Please enter 16 characters to be encrypted: ')
+    print len(plain_text), " NOPE, try again..."
+else:
+    print plain_text, " is exactly 16 characters! GREAT JOB!"
+#Only printing "Too Small!"
