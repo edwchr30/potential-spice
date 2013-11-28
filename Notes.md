@@ -15,17 +15,19 @@ this all down.
 More troubleshooting, I got all of my certs in order.
 Still dealing with this error.
 
->Traceback (most recent call last):
->  File "connect.py", line 12, in <module>
-    sslSocket.connect(['192.168.160.128', 6000])
+Traceback (most recent call last):  
+  File "connect.py", line 12, in <module>  
+    sslSocket.connect(['192.168.160.128', 6000])  
   File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 333, in connect
-    self._real_connect(addr, False)
+    self._real_connect(addr, False)  
   File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 314, in _real_connect
-    self.ca_certs, self.ciphers)
-ssl.SSLError: [Errno 336265218] _ssl.c:351: error:140B0002:SSL >routines:SSL_CTX_use_PrivateKey_file:system lib
+    self.ca_certs, self.ciphers)  
+ssl.SSLError: [Errno 336265218] _ssl.c:351: error:140B0002:SSL routines:SSL_CTX_use_PrivateKey_file:system lib
 
 I've put it up on stackoverflow.com
 http://stackoverflow.com/questions/20256023/unable-to-connect-to-socket-using-ssl-and-python-feeling-lost
+
+On a side note, I've never used MD before and find myself learning a little of that here and there.
 
 11/26/2013
 ----------------
