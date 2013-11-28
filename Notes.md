@@ -10,6 +10,23 @@ I should have started earlier, but I wont back date.
 If my memory was perfect, I wouldn't have to write
 this all down.
 
+11/27/2013
+----------------
+More troubleshooting, I got all of my certs in order.
+Still dealing with this error.
+
+>Traceback (most recent call last):
+>  File "connect.py", line 12, in <module>
+    sslSocket.connect(['192.168.160.128', 6000])
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 333, in connect
+    self._real_connect(addr, False)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 314, in _real_connect
+>    self.ca_certs, self.ciphers)
+>ssl.SSLError: [Errno 336265218] _ssl.c:351: error:140B0002:SSL >routines:SSL_CTX_use_PrivateKey_file:system lib
+
+I've put it up on stackoverflow.com
+http://stackoverflow.com/questions/20256023/unable-to-connect-to-socket-using-ssl-and-python-feeling-lost
+
 11/26/2013
 ----------------
 Spent the evening diggin' through stack overflow and getting the Hardware Security Module Virtual Machine configured properly.
