@@ -10,6 +10,25 @@ I should have started earlier, but I wont back date.
 If my memory was perfect, I wouldn't have to write
 this all down.
 
+11/28/2013
+----------------
+Still more troubleshooting.
+
+I was calling for a file that wasn't there. This has been fixed.  
+
+I will spend tomorrow figuring out how to solve my new error.
+
+Traceback (most recent call last):
+  File "connect.py", line 12, in <module>
+    sslSocket.connect(('192.168.160.128', 6000))
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 333, in connect
+    self._real_connect(addr, False)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 323, in _real_connect
+    self.do_handshake()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ssl.py", line 305, in do_handshake
+    self._sslobj.do_handshake()
+socket.error: [Errno 54] Connection reset by peer
+
 11/27/2013
 ----------------
 More troubleshooting, I got all of my certs in order.
