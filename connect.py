@@ -5,7 +5,6 @@ import ssl
 # HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sslSocket = ssl.wrap_socket(sock,
-# Error in handshake required this bit to bypass
     ssl_version=ssl.PROTOCOL_TLSv1,
 	keyfile="AKMClientPrivKey.pem", 
 	certfile="AKMClientSignedCert.pem", 
