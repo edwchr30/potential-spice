@@ -26,10 +26,11 @@ else:
 ## Seting up the SSL conection
 HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sslSocket = ssl.wrap_socket(sock, 
-	keyfile="./CA/AKMClientPrivateKey.pem", 
-	certfile="./CA/AKMClientSignedCert.pem", 
-	ca_certs="./CA/TCASelfSignedCert.pem", 
+sslSocket = ssl.wrap_socket(sock,
+    ssl_version=ssl.PROTOCOL_TLSv1,
+	keyfile="AKMClientPrivKey.pem", 
+	certfile="AKMClientSignedCert.pem", 
+	ca_certs="TCASelfSignedCert.pem", 
 	cert_reqs=ssl.CERT_REQUIRED)
 sslSocket.connect((HSM, 6000))
 print "Connection is successful!"
