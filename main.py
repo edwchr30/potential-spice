@@ -1,3 +1,9 @@
+# Crypto.Cipher is a module that is part of PyCrypto
+# https://www.dlitz.net/software/pycrypto  This must be installed
+# for this code to function properly
+
+from Crypto.Cipher import AES
+import base64
 import os
 import socket, ssl
 
@@ -15,14 +21,12 @@ print "\n"
 print "First we will create a file."
 
 ## AES requires block size to be 16, 24, or 32
-## Eventually I'd like a PADDING algorithm here.
-plain_text = "stuff"
-while len(plain_text)!=16:
-    plain_text = raw_input('Please enter 16 characters to be encrypted: ')
-    print len(plain_text), " NOPE, try again..."
-else:
-    print plain_text, " is exactly 16 characters! GREAT JOB!"
-    
+blockSize = 16
+padding = '@'
+
+plain_text = raw_input('Please enter a short phrase to be encrypted: ')
+
+
 ## Seting up the SSL conection
 HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
