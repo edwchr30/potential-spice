@@ -20,15 +20,16 @@ print "we go."
 print "\n"
 print "First we will create a file."
 
-## AES requires block size to be 16, 24, or 32
+## AES requires block size to be a multiple of 16, 24, or 32
 blockSize = 16
-padding = '@'
 
-plain_text = raw_input('Please enter a short phrase to be encrypted: ')
+## get input from the user and pad it up to a compatible size
+plain_text = raw_input('Please enter your name: ')
+secret_text = plain_text.rjust(blockSize, 'Z')
 
-
+print "You padded input", secret_text
 ## Seting up the SSL conection
-HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
+##HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sslSocket = ssl.wrap_socket(sock,
     ssl_version=ssl.PROTOCOL_TLSv1,
@@ -36,5 +37,22 @@ sslSocket = ssl.wrap_socket(sock,
 	certfile="AKMClientSignedCert.pem", 
 	ca_certs="TCASelfSignedCert.pem", 
 	cert_reqs=ssl.CERT_REQUIRED)
-sslSocket.connect((HSM, 6000))
+sslSocket.connect((192.168.160.128, 6000))
 print "Connection is successful!"
+
+# Send request to AKM
+sslSocket.write("000712001Key01-128                               " \
+	"                        BIN");
+
+# Read response from AKM
+full_response = ""
+response = sslSocket.read()
+while response:
+	full_response += response
+	response = sslSocket.read()
+
+# Close the connection to AKM
+sslSocket.close()
+
+print full_response
+
