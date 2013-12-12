@@ -6,6 +6,15 @@ from Crypto.Cipher import AES
 import base64
 import os
 import socket, ssl
+import hashlib
+
+## AES requires block size to be a multiple of 16, 24, or 32
+blockSize = 16
+padding = '#'
+pad = lambda s: s + (blockSize - len(s) % blockSize) * padding
+
+encode = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
+decode = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(padding)
 
 ##Title##
 print "This program serves to demonstrate"
@@ -18,18 +27,21 @@ print "\n"
 print "The steps will be explained as"
 print "we go."
 print "\n"
-print "First we will create a file."
+print "First we will generate some data."
 
-## AES requires block size to be a multiple of 16, 24, or 32
-blockSize = 16
 
-## get input from the user and pad it up to a compatible size
 plain_text = raw_input('Please enter your name: ')
-secret_text = plain_text.rjust(blockSize, 'Z')
+#secret_text = plain_text.rjust(blockSize, '0')
 
-print "You padded input", secret_text
-## Seting up the SSL conection
-##HSM = raw_input('Please enter the IP address of the machine you are connecting to.')
+
+
+print "Your input after padding/hashing:", plain_text
+
+#
+### Set up the SSL conection
+#
+
+HSM = raw_input('Please enter the IP address of the machine you are connecting to[192.168.160.128]:      ')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sslSocket = ssl.wrap_socket(sock,
     ssl_version=ssl.PROTOCOL_TLSv1,
@@ -37,22 +49,34 @@ sslSocket = ssl.wrap_socket(sock,
 	certfile="AKMClientSignedCert.pem", 
 	ca_certs="TCASelfSignedCert.pem", 
 	cert_reqs=ssl.CERT_REQUIRED)
-sslSocket.connect((192.168.160.128, 6000))
-print "Connection is successful!"
+sslSocket.connect((HSM, 6000))
+print "Connection OPENED"
 
-# Send request to AKM
+# Send request
 sslSocket.write("000712001Key01-128                               " \
 	"                        BIN");
 
-# Read response from AKM
+# Read response
 full_response = ""
 response = sslSocket.read()
 while response:
 	full_response += response
 	response = sslSocket.read()
 
-# Close the connection to AKM
+# Close the connection
 sslSocket.close()
+print "Connection CLOSED"
 
-print full_response
+key = hashlib.sha256(full_response).digest()
+print 'Encryption Key:', key
 
+# Create a cipher object using the hashed response
+cipher = AES.new(key)
+
+# Encrypt and encode a string
+encrypt = encode(cipher, plain_text)
+print 'EEncrypted String:', encrypt
+
+# Decrypt and decode the encoded string
+decrypt = decode(cipher, encrypt)
+print 'Decrypted string:', decrypt

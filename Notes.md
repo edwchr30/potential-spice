@@ -10,6 +10,30 @@ I should have started earlier, but I wont back date.
 If my memory was perfect, I wouldn't have to write
 this all down.
 
+12/12/13
+----------------
+More reading, and some fine tuning...
+It's done and ready for presentation!
+
+
+http://eli.thegreenplace.net/2010/06/25/aes-encryption-of-files-in-python-with-pycrypto/
+
+https://pypi.python.org/pypi/simple-crypt
+
+12/11/13
+----------------
+Met up with Colin the other day, he was a big help in getting my
+ssl connection up and running.
+
+I haven't really looked at this too much since last thursday(12/5)
+And forgot to update this notes file.
+
+I've been reading about encryption and how the proper way to
+make sure that data getting passed on to AES is in fact the proper bytesize.
+
+http://www.rfc-editor.org/rfc/rfc2898.txt
+https://www.dlitz.net/software/pycrypto/doc/
+
 11/28/2013
 ----------------
 Still more troubleshooting.
